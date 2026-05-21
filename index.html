@@ -1,0 +1,1435 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>DK Solutions – Förder- & Finanzberatung für den Mittelstand</title>
+<meta name="description" content="DK Solutions identifiziert Förderungen, Steuervorteile und Einsparpotenziale für Unternehmer. Akkreditierter BAFA-Berater. Sitz in Aachen." />
+<link rel="icon" type="image/png" href="assets/favicon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Inter+Tight:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #f4f2ed;          /* warmes Off-White */
+    --bg-alt: #eae6dd;       /* Sand */
+    --ink: #1f2422;          /* Anthrazit */
+    --ink-soft: #3a423f;
+    --muted: #6b6f6c;
+    --line: #d6d2c7;
+    --sage: #8a9d8a;         /* Salbeigrün */
+    --sage-deep: #5d7062;
+    --sage-soft: #c8d3c6;
+    --accent: #b8a070;       /* dezentes Messing für Mikro-Akzente */
+    --paper: #ffffff;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 400;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    /* subtile Papierstruktur */
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(138,157,138,0.05) 0%, transparent 40%),
+      radial-gradient(circle at 80% 90%, rgba(184,160,112,0.04) 0%, transparent 50%);
+  }
+
+  /* Grain Overlay für Authentizität */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.35;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.12 0 0 0 0 0.14 0 0 0 0 0.13 0 0 0 0.08 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* ============ TYPOGRAPHY ============ */
+  h1, h2, h3, h4 {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+  .eyebrow {
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--sage-deep);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .eyebrow::before {
+    content: '';
+    width: 24px;
+    height: 1px;
+    background: var(--sage-deep);
+  }
+
+  /* ============ NAV ============ */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 20px 0;
+    background: rgba(244, 242, 237, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s ease;
+  }
+  nav.scrolled { border-bottom-color: var(--line); }
+  .nav-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .logo {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    line-height: 0;
+  }
+  .logo img {
+    height: 42px;
+    width: auto;
+    display: block;
+  }
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    align-items: center;
+  }
+  .nav-links a {
+    color: var(--ink-soft);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--sage-deep); }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 22px;
+    background: var(--ink);
+    color: var(--bg);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 2px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.25s ease;
+  }
+  .btn:hover {
+    background: var(--sage-deep);
+    transform: translateY(-1px);
+  }
+  .btn-outline {
+    background: transparent;
+    color: var(--ink);
+    border: 1px solid var(--ink);
+  }
+  .btn-outline:hover {
+    background: var(--ink);
+    color: var(--bg);
+  }
+  .btn .arrow {
+    display: inline-block;
+    transition: transform 0.25s;
+  }
+  .btn:hover .arrow { transform: translateX(4px); }
+
+  .mobile-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
+  .mobile-toggle span {
+    display: block;
+    width: 24px;
+    height: 1.5px;
+    background: var(--ink);
+    margin: 5px 0;
+    transition: 0.3s;
+  }
+
+  /* ============ HERO ============ */
+  .hero {
+    padding: 180px 0 120px;
+    position: relative;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 0.7fr;
+    gap: 80px;
+    align-items: end;
+  }
+  .hero h1 {
+    font-size: clamp(48px, 7vw, 96px);
+    line-height: 0.98;
+    letter-spacing: -0.035em;
+    margin-bottom: 36px;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--sage-deep);
+    font-weight: 300;
+  }
+  .hero-intro {
+    font-size: 19px;
+    color: var(--ink-soft);
+    max-width: 520px;
+    margin-bottom: 40px;
+    line-height: 1.6;
+  }
+  .hero-cta {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .hero-side {
+    border-left: 1px solid var(--line);
+    padding-left: 40px;
+    padding-bottom: 8px;
+  }
+  .hero-side .metric {
+    margin-bottom: 28px;
+  }
+  .hero-side .metric:last-child { margin-bottom: 0; }
+  .hero-side .number {
+    font-family: 'Fraunces', serif;
+    font-size: 48px;
+    font-weight: 300;
+    color: var(--ink);
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+  .hero-side .label {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 6px;
+    letter-spacing: 0.02em;
+  }
+  .hero-badge {
+    position: absolute;
+    top: 140px;
+    right: 32px;
+    background: var(--ink);
+    color: var(--bg);
+    padding: 8px 16px;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 500;
+    border-radius: 2px;
+  }
+
+  /* ============ SECTION BASE ============ */
+  section {
+    padding: 120px 0;
+    position: relative;
+  }
+  .section-head {
+    max-width: 700px;
+    margin-bottom: 64px;
+  }
+  .section-head h2 {
+    font-size: clamp(36px, 5vw, 60px);
+    line-height: 1.05;
+    margin-top: 20px;
+  }
+  .section-head h2 em {
+    font-style: italic;
+    color: var(--sage-deep);
+    font-weight: 300;
+  }
+  .section-head p {
+    font-size: 18px;
+    color: var(--ink-soft);
+    margin-top: 24px;
+    max-width: 560px;
+  }
+
+  /* ============ VALUE PROP / VERSPRECHEN ============ */
+  .promise {
+    background: var(--ink);
+    color: var(--bg);
+    padding: 100px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .promise::before {
+    content: '';
+    position: absolute;
+    top: 0; right: -200px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(138,157,138,0.15), transparent 70%);
+    pointer-events: none;
+  }
+  .promise-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .promise .eyebrow { color: var(--sage); }
+  .promise .eyebrow::before { background: var(--sage); }
+  .promise h2 {
+    color: var(--bg);
+    font-size: clamp(34px, 4.5vw, 54px);
+    line-height: 1.1;
+    margin-top: 20px;
+  }
+  .promise h2 em {
+    font-style: italic;
+    color: var(--sage);
+    font-weight: 300;
+  }
+  .promise-equation {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 48px;
+    border-radius: 4px;
+    position: relative;
+  }
+  .promise-equation .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 18px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .promise-equation .row:last-of-type { border-bottom: none; }
+  .promise-equation .row .key {
+    font-size: 14px;
+    color: rgba(255,255,255,0.6);
+    letter-spacing: 0.02em;
+  }
+  .promise-equation .row .val {
+    font-family: 'Fraunces', serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--bg);
+    text-align: right;
+  }
+  .promise-equation .row.highlight .val {
+    color: var(--sage);
+    font-size: 36px;
+  }
+  .promise-fine {
+    margin-top: 20px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.6;
+  }
+
+  /* ============ LEISTUNGEN ============ */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+  }
+  .service-card {
+    background: var(--bg);
+    padding: 48px 40px;
+    position: relative;
+    transition: background 0.3s ease;
+  }
+  .service-card:hover { background: var(--paper); }
+  .service-card .num {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--sage-deep);
+    margin-bottom: 24px;
+    display: block;
+  }
+  .service-card h3 {
+    font-size: 26px;
+    line-height: 1.2;
+    margin-bottom: 16px;
+    letter-spacing: -0.02em;
+  }
+  .service-card .lead {
+    color: var(--ink-soft);
+    font-size: 15px;
+    margin-bottom: 24px;
+    line-height: 1.6;
+  }
+  .service-card ul {
+    list-style: none;
+  }
+  .service-card ul li {
+    font-size: 14px;
+    color: var(--ink-soft);
+    padding: 8px 0 8px 22px;
+    position: relative;
+    border-top: 1px solid var(--line);
+  }
+  .service-card ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 17px;
+    width: 10px;
+    height: 1px;
+    background: var(--sage-deep);
+  }
+
+  /* ============ ZAHLEN-BAND ============ */
+  .stats {
+    background: var(--bg-alt);
+    padding: 80px 0;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+  }
+  .stat {
+    text-align: left;
+  }
+  .stat .big {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(48px, 6vw, 76px);
+    font-weight: 300;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    color: var(--ink);
+  }
+  .stat .big em {
+    font-style: italic;
+    color: var(--sage-deep);
+  }
+  .stat .desc {
+    font-size: 14px;
+    color: var(--ink-soft);
+    margin-top: 12px;
+    max-width: 220px;
+    line-height: 1.5;
+  }
+
+  /* ============ CASE STUDIES ============ */
+  .cases {
+    background: var(--bg);
+  }
+  .case-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border-top: 1px solid var(--line);
+  }
+  .case {
+    padding: 48px 0;
+    border-bottom: 1px solid var(--line);
+    display: grid;
+    grid-template-columns: 80px 1fr 1fr 200px;
+    gap: 40px;
+    align-items: start;
+    transition: padding 0.3s ease;
+    cursor: pointer;
+  }
+  .case:hover { padding-left: 16px; padding-right: 16px; background: var(--bg-alt); }
+  .case .index {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 18px;
+    color: var(--sage-deep);
+    padding-top: 4px;
+  }
+  .case .meta {
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .case h3 {
+    font-size: 24px;
+    line-height: 1.25;
+    margin-bottom: 12px;
+  }
+  .case .summary {
+    color: var(--ink-soft);
+    font-size: 14px;
+    line-height: 1.55;
+  }
+  .case .result {
+    text-align: right;
+  }
+  .case .result .num {
+    font-family: 'Fraunces', serif;
+    font-size: 36px;
+    font-weight: 400;
+    color: var(--sage-deep);
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+  .case .result .lbl {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 6px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .placeholder-note {
+    background: var(--bg-alt);
+    border-left: 3px solid var(--sage-deep);
+    padding: 16px 20px;
+    margin-bottom: 32px;
+    font-size: 13px;
+    color: var(--ink-soft);
+    font-style: italic;
+  }
+
+  /* ============ TEAM ============ */
+  .team-section { background: var(--bg-alt); }
+  .team-lead {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 64px;
+    align-items: center;
+    padding-bottom: 80px;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 64px;
+  }
+  .team-lead-portrait {
+    aspect-ratio: 4/5;
+    background: var(--sage-soft);
+    position: relative;
+    overflow: hidden;
+    border-radius: 2px;
+    box-shadow: 0 30px 60px -20px rgba(31,36,34,0.25);
+  }
+  .team-lead-portrait img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    /* dezenter Editorial-Look: sanfte Entsättigung + warmer Ton */
+    filter: saturate(0.85) contrast(1.02);
+  }
+  .team-lead-portrait::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 60%, rgba(31,36,34,0.25));
+    pointer-events: none;
+  }
+  /* dekorativer Rahmen für mehr Editorial-Charakter */
+  .team-lead-portrait::before {
+    content: '';
+    position: absolute;
+    inset: 12px;
+    border: 1px solid rgba(255,255,255,0.25);
+    z-index: 2;
+    pointer-events: none;
+  }
+  .portrait-monogram {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    font-family: 'Fraunces', serif;
+    font-size: 120px;
+    color: rgba(255,255,255,0.4);
+    font-weight: 300;
+    z-index: 1;
+  }
+  .team-lead-info .role-badge {
+    display: inline-block;
+    background: var(--ink);
+    color: var(--bg);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 6px 12px;
+    margin-bottom: 20px;
+  }
+  .team-lead-info h3 {
+    font-size: 48px;
+    line-height: 1.05;
+    margin-bottom: 8px;
+  }
+  .team-lead-info .position {
+    font-size: 16px;
+    color: var(--sage-deep);
+    font-style: italic;
+    margin-bottom: 24px;
+  }
+  .team-lead-info p {
+    color: var(--ink-soft);
+    font-size: 16px;
+    line-height: 1.65;
+    max-width: 520px;
+  }
+  .cred-list {
+    display: flex;
+    gap: 24px;
+    margin-top: 28px;
+    flex-wrap: wrap;
+  }
+  .cred {
+    font-size: 12px;
+    color: var(--ink);
+    padding: 8px 14px;
+    border: 1px solid var(--ink);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+  .member {
+    text-align: left;
+  }
+  .member-portrait {
+    aspect-ratio: 4/5;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 20px;
+    display: grid;
+    place-items: center;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+  }
+  .member:hover .member-portrait {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px -16px rgba(31,36,34,0.18);
+  }
+  .member-portrait img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 22%;
+    display: block;
+    filter: saturate(0.85) contrast(1.02);
+    transition: filter 0.4s ease, transform 0.6s ease;
+  }
+  .member:hover .member-portrait img {
+    filter: saturate(1) contrast(1.05);
+    transform: scale(1.02);
+  }
+  .member-portrait .mono {
+    font-family: 'Fraunces', serif;
+    font-size: 64px;
+    color: var(--sage);
+    font-weight: 300;
+  }
+  .member-portrait::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 40%;
+    height: 3px;
+    background: var(--sage-deep);
+    z-index: 2;
+  }
+  .member h4 {
+    font-size: 20px;
+    margin-bottom: 4px;
+    letter-spacing: -0.01em;
+  }
+  .member .role {
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+
+  /* ============ PROZESS ============ */
+  .process-list {
+    counter-reset: step;
+  }
+  .step {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 60px;
+    padding: 40px 0;
+    border-top: 1px solid var(--line);
+    align-items: start;
+  }
+  .step:last-child { border-bottom: 1px solid var(--line); }
+  .step .step-num {
+    font-family: 'Fraunces', serif;
+    font-size: 44px;
+    font-weight: 300;
+    color: var(--sage-deep);
+    line-height: 1;
+    font-style: italic;
+  }
+  .step-content h3 {
+    font-size: 28px;
+    margin-bottom: 12px;
+    letter-spacing: -0.02em;
+  }
+  .step-content p {
+    color: var(--ink-soft);
+    font-size: 16px;
+    line-height: 1.6;
+    max-width: 600px;
+  }
+  .step-content .duration {
+    display: inline-block;
+    font-size: 12px;
+    color: var(--sage-deep);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 16px;
+    padding: 4px 10px;
+    background: var(--sage-soft);
+    border-radius: 2px;
+  }
+
+  /* ============ CONTACT ============ */
+  .contact {
+    background: var(--ink);
+    color: var(--bg);
+    padding: 120px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .contact::before {
+    content: '';
+    position: absolute;
+    bottom: -300px;
+    left: -200px;
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(circle, rgba(138,157,138,0.12), transparent 70%);
+    pointer-events: none;
+  }
+  .contact-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    position: relative;
+  }
+  .contact h2 {
+    color: var(--bg);
+    font-size: clamp(40px, 5.5vw, 64px);
+    line-height: 1.05;
+    margin-top: 20px;
+  }
+  .contact h2 em {
+    font-style: italic;
+    color: var(--sage);
+    font-weight: 300;
+  }
+  .contact .eyebrow { color: var(--sage); }
+  .contact .eyebrow::before { background: var(--sage); }
+  .contact-lead {
+    color: rgba(255,255,255,0.75);
+    font-size: 17px;
+    line-height: 1.6;
+    margin-top: 28px;
+    max-width: 480px;
+  }
+  .contact-info {
+    margin-top: 48px;
+  }
+  .contact-info .row {
+    padding: 18px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+  .contact-info .row .lbl {
+    font-size: 12px;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  .contact-info .row .val {
+    color: var(--bg);
+    text-decoration: none;
+    font-size: 16px;
+    font-family: 'Fraunces', serif;
+  }
+  .contact-info .row .val:hover { color: var(--sage); }
+
+  .form-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 48px;
+    border-radius: 4px;
+  }
+  .form-card h3 {
+    color: var(--bg);
+    font-size: 24px;
+    margin-bottom: 8px;
+  }
+  .form-card .sub {
+    color: rgba(255,255,255,0.6);
+    font-size: 14px;
+    margin-bottom: 32px;
+  }
+  .field {
+    margin-bottom: 20px;
+  }
+  .field label {
+    display: block;
+    font-size: 12px;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 8px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .field input, .field select, .field textarea {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    padding: 8px 0;
+    color: var(--bg);
+    font-family: inherit;
+    font-size: 15px;
+    transition: border-color 0.2s;
+  }
+  .field input:focus, .field select:focus, .field textarea:focus {
+    outline: none;
+    border-bottom-color: var(--sage);
+  }
+  .field textarea { resize: vertical; min-height: 60px; }
+  .field select option { background: var(--ink); }
+  .field-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .btn-submit {
+    margin-top: 20px;
+    width: 100%;
+    background: var(--sage);
+    color: var(--ink);
+    padding: 16px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border-radius: 2px;
+    transition: background 0.25s;
+  }
+  .btn-submit:hover { background: var(--bg); }
+
+  /* ============ FOOTER ============ */
+  footer {
+    background: var(--bg);
+    padding: 60px 0 40px;
+    border-top: 1px solid var(--line);
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 60px;
+    margin-bottom: 60px;
+  }
+  .footer-brand p {
+    color: var(--ink-soft);
+    font-size: 14px;
+    margin-top: 16px;
+    max-width: 320px;
+    line-height: 1.6;
+  }
+  .footer-col h5 {
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 20px;
+    font-weight: 500;
+  }
+  .footer-col a {
+    display: block;
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 14px;
+    padding: 6px 0;
+    transition: color 0.2s;
+  }
+  .footer-col a:hover { color: var(--sage-deep); }
+  .footer-bottom {
+    border-top: 1px solid var(--line);
+    padding-top: 24px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  /* ============ ANIMATIONS ============ */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .hero h1 { animation: fadeUp 1s ease both; }
+  .hero-intro { animation: fadeUp 1s ease 0.15s both; }
+  .hero-cta { animation: fadeUp 1s ease 0.3s both; }
+  .hero-side .metric:nth-child(1) { animation: fadeUp 0.8s ease 0.5s both; }
+  .hero-side .metric:nth-child(2) { animation: fadeUp 0.8s ease 0.65s both; }
+  .hero-side .metric:nth-child(3) { animation: fadeUp 0.8s ease 0.8s both; }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 968px) {
+    .nav-links { display: none; }
+    .mobile-toggle { display: block; }
+    .nav-links.open {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 100%;
+      left: 0; right: 0;
+      background: var(--bg);
+      padding: 24px 32px;
+      border-bottom: 1px solid var(--line);
+      gap: 20px;
+    }
+    .hero { padding: 140px 0 80px; }
+    .hero-grid { grid-template-columns: 1fr; gap: 60px; }
+    .hero-side { border-left: none; border-top: 1px solid var(--line); padding-left: 0; padding-top: 32px; }
+    .hero-side { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .hero-side .metric { margin-bottom: 0; }
+    .hero-badge { display: none; }
+    .promise-inner, .contact-inner { grid-template-columns: 1fr; gap: 40px; }
+    .services-grid { grid-template-columns: 1fr; }
+    .stats-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+    .case { grid-template-columns: 40px 1fr; gap: 20px; }
+    .case .result { text-align: left; grid-column: 2; }
+    .case .summary { grid-column: 2; }
+    .team-lead { grid-template-columns: 1fr; gap: 32px; }
+    .team-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
+    .step { grid-template-columns: 60px 1fr; gap: 24px; }
+    .step .step-num { font-size: 32px; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+    .field-row { grid-template-columns: 1fr; }
+    .form-card { padding: 28px; }
+    section { padding: 80px 0; }
+    .container { padding: 0 24px; }
+    .logo img { height: 34px; }
+  }
+  @media (max-width: 560px) {
+    .team-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .footer-bottom { flex-direction: column; gap: 8px; }
+    .stats-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ====== NAV ====== -->
+<nav id="nav">
+  <div class="container nav-inner">
+    <a href="#" class="logo" aria-label="DK Solutions">
+      <img src="assets/logo_dark.png" alt="DK Solutions" />
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="#leistungen">Leistungen</a>
+      <a href="#cases">Referenzen</a>
+      <a href="#team">Team</a>
+      <a href="#prozess">Prozess</a>
+      <a href="#kontakt" class="btn">Termin sichern <span class="arrow">→</span></a>
+    </div>
+    <button class="mobile-toggle" id="mobileToggle" aria-label="Menü">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ====== HERO ====== -->
+<header class="hero">
+  <div class="container">
+    <span class="hero-badge">Akkreditierter BAFA-Berater</span>
+    <div class="hero-grid">
+      <div>
+        <h1>Förderungen finden.<br>Kosten senken.<br><em>Spielraum gewinnen.</em></h1>
+        <p class="hero-intro">DK Solutions deckt für mittelständische Unternehmen verborgene Einsparpotenziale, staatliche Förderungen und Steuervorteile auf — mit messbarem Ergebnis und einem klaren Versprechen.</p>
+        <div class="hero-cta">
+          <a href="#kontakt" class="btn">Kostenfreies Erstgespräch <span class="arrow">→</span></a>
+          <a href="#leistungen" class="btn btn-outline">Leistungen ansehen</a>
+        </div>
+      </div>
+      <aside class="hero-side">
+        <div class="metric">
+          <div class="number">3.000&thinsp;€<sup style="font-size:18px;color:var(--sage-deep);">+</sup></div>
+          <div class="label">Garantierte Mindestersparnis netto</div>
+        </div>
+        <div class="metric">
+          <div class="number">3 Quellen</div>
+          <div class="label">Förderungen · Einsparungen · Steuervorteile</div>
+        </div>
+        <div class="metric">
+          <div class="number">14 Tage</div>
+          <div class="label">Bis zur ersten Auswertung</div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</header>
+
+<!-- ====== PROMISE / VERSPRECHEN ====== -->
+<section class="promise">
+  <div class="container">
+    <div class="promise-inner">
+      <div>
+        <span class="eyebrow">Unser Versprechen</span>
+        <h2>3.000&thinsp;€ mehr in Ihrer Kasse.<br><em>Garantiert.</em></h2>
+        <p style="color:rgba(255,255,255,0.75); font-size:17px; margin-top:24px; max-width:480px; line-height:1.65;">
+          Wir verpflichten uns, Ihnen bei positiver Auswertung mindestens 3.000&nbsp;€&nbsp;netto sichtbar zu machen — durch staatliche Fördergelder, optimierte Steuern oder reduzierte Fixkosten. Schwarz auf weiß. Ohne Wenn und Aber.
+        </p>
+      </div>
+      <div class="promise-equation">
+        <div class="row">
+          <span class="key">Fördergelder</span>
+          <span class="val">AfA · BAFA · AZAV · KfW</span>
+        </div>
+        <div class="row">
+          <span class="key">Steuervorteile</span>
+          <span class="val">Geschäftsführung & Lohnkosten</span>
+        </div>
+        <div class="row">
+          <span class="key">Einsparungen</span>
+          <span class="val">Strom · Gas · Versicherung</span>
+        </div>
+        <div class="row highlight">
+          <span class="key">Ihre Mindestersparnis</span>
+          <span class="val">3.000&thinsp;€</span>
+        </div>
+        <p class="promise-fine">Alle Beträge netto. Garantie gilt im Falle einer positiven Auswertung. Details im persönlichen Erstgespräch.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== LEISTUNGEN ====== -->
+<section id="leistungen">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Leistungen</span>
+      <h2>Vier Hebel,<br>ein Ziel: <em>mehr Liquidität.</em></h2>
+      <p>Unsere Beratung verbindet Fördermittel, Steueroptimierung, Kostensenkung und digitale Sichtbarkeit zu einem durchdachten Paket. Sie bekommen Klarheit, konkrete Handlungsempfehlungen — und Begleitung bis zur Umsetzung.</p>
+    </div>
+
+    <div class="services-grid reveal">
+      <div class="service-card">
+        <span class="num">01 / Förderanalyse</span>
+        <h3>Förder- & Zuschuss­programme aufdecken</h3>
+        <p class="lead">Wir prüfen für Sie relevante Bundes- und Landesförderprogramme — und holen heraus, was Ihrem Unternehmen wirklich zusteht.</p>
+        <ul>
+          <li>Prüfung relevanter Bundes- & Landesförderprogramme</li>
+          <li>Übersicht möglicher Zuschüsse: AfA, BAFA, AZAV, KfW</li>
+          <li>Schriftliche Auswertung mit klaren Handlungsempfehlungen</li>
+          <li>Vermittlung an entsprechende Stellen & Institute</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <span class="num">02 / Einsparanalyse</span>
+        <h3>Fixkosten und Steuern optimieren</h3>
+        <p class="lead">Wir identifizieren systematisch Einsparpotenziale, von der Versicherung bis zur Lohnkostenstruktur — und zeigen, wo am meisten zu holen ist.</p>
+        <ul>
+          <li>Identifikation von Einsparpotenzialen & Fixkostenoptimierung</li>
+          <li>Optimierung von Versicherungs- und Energiekosten</li>
+          <li>Steuerspartipps für Geschäftsführer & Lohnkostenoptimierung</li>
+          <li>Schriftliche Auswertung mit konkreten Handlungsempfehlungen</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <span class="num">03 / Begleitung</span>
+        <h3>Persönliche Beratung & Umsetzung</h3>
+        <p class="lead">Wir lassen Sie nach der Analyse nicht allein. Vom Onboarding bis zur Umsetzung sind wir an Ihrer Seite — mit Strategiegesprächen, Zusammenfassungen und Support.</p>
+        <ul>
+          <li>Onboarding zur Bestandsaufnahme Ihrer aktuellen Situation</li>
+          <li>2× Strategiegespräch (je 60 Min.) zur Analyse & Umsetzung</li>
+          <li>Schriftliche Zusammenfassung aller Ergebnisse & Schritte</li>
+          <li>E-Mail-Support während der gesamten Begleitung</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <span class="num">04 / Online-Präsenz</span>
+        <h3>Sichtbarkeit & digitales Auftreten</h3>
+        <p class="lead">Wir analysieren Ihre Online-Präsenz und zeigen, wie Sie bei Google und auf Social Media sichtbar werden — als Teil der Gesamtstrategie.</p>
+        <ul>
+          <li>Analyse Ihrer Website & Social-Media-Auftritte</li>
+          <li>Prüfung Ihrer Sichtbarkeit bei Google & Co.</li>
+          <li>Auswertung inkl. konkretem Optimierungsvorschlag</li>
+          <li>Übernahme der Vermittlungskosten zu relevanten Stellen</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== STATS ====== -->
+<section class="stats" style="padding:80px 0;">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat">
+        <div class="big">3.000<em>€</em></div>
+        <div class="desc">Garantierte Mindestersparnis bei positiver Auswertung</div>
+      </div>
+      <div class="stat">
+        <div class="big">14 <span style="font-size:0.4em;color:var(--muted);">Tage</span></div>
+        <div class="desc">Bis zur ersten schriftlichen Auswertung</div>
+      </div>
+      <div class="stat">
+        <div class="big">4</div>
+        <div class="desc">Förderquellen kombiniert: AfA, BAFA, AZAV, KfW</div>
+      </div>
+      <div class="stat">
+        <div class="big">100<em>%</em></div>
+        <div class="desc">Transparente Zusammenfassung aller Ergebnisse</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== CASES ====== -->
+<section class="cases" id="cases">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Referenzen</span>
+      <h2>Was wir<br>schon bewegt <em>haben.</em></h2>
+      <p>Ein Auszug aus Projekten — Branchen, Hebel, Resultate. Diskretion ist Teil unseres Berufsethos: Detaillierte Fallstudien teilen wir auf Anfrage und nach Freigabe unserer Mandanten.</p>
+    </div>
+
+    <div class="placeholder-note reveal">
+      ✎ Platzhalter-Referenzen — werden mit echten Mandantenprojekten ersetzt, sobald Freigaben vorliegen.
+    </div>
+
+    <div class="case-list reveal">
+      <div class="case">
+        <span class="index">01</span>
+        <div>
+          <div class="meta">Handwerksbetrieb · 18 Mitarbeitende</div>
+          <h3>BAFA-Förderung für Energieberatung & Investitionszuschuss kombiniert</h3>
+        </div>
+        <p class="summary">Identifizierung eines Investitionszuschusses für neue Werkstattausstattung, zusätzlich Steueroptimierung bei der Lohnkostenstruktur — Umsetzung innerhalb von 8 Wochen.</p>
+        <div class="result">
+          <div class="num">12.400&thinsp;€</div>
+          <div class="lbl">Jährliche Ersparnis</div>
+        </div>
+      </div>
+
+      <div class="case">
+        <span class="index">02</span>
+        <div>
+          <div class="meta">Gastronomie · Einzelunternehmen</div>
+          <h3>Energiekostenoptimierung und KfW-Modernisierungs­kredit erschlossen</h3>
+        </div>
+        <p class="summary">Wechsel der Strom- und Gasverträge plus Vermittlung eines zinsgünstigen KfW-Darlehens für die Küchenmodernisierung — bei laufendem Betrieb.</p>
+        <div class="result">
+          <div class="num">7.800&thinsp;€</div>
+          <div class="lbl">Einmalige Ersparnis</div>
+        </div>
+      </div>
+
+      <div class="case">
+        <span class="index">03</span>
+        <div>
+          <div class="meta">IT-Dienstleister · GmbH, 6 Mitarbeitende</div>
+          <h3>AZAV-Förderung für Mitarbeiter­qualifizierung & Versicherungs­optimierung</h3>
+        </div>
+        <p class="summary">Vollständige Übernahme von Weiterbildungskosten über AZAV-Programm, parallel Senkung der Betriebshaftpflicht durch Vertragsanpassung.</p>
+        <div class="result">
+          <div class="num">9.200&thinsp;€</div>
+          <div class="lbl">Im ersten Jahr</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== TEAM ====== -->
+<section class="team-section" id="team">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Das Team hinter DK Solutions</span>
+      <h2>Sieben Spezialisten,<br>ein <em>Mandat:</em> Ihr Erfolg.</h2>
+    </div>
+
+    <div class="team-lead reveal">
+      <div class="team-lead-portrait">
+        <img src="assets/tamaz.png" alt="Tamaz Tordia — Gründer DK Solutions, akkreditierter BAFA-Berater" />
+      </div>
+      <div class="team-lead-info">
+        <span class="role-badge">Gründer</span>
+        <h3>Tamaz Tordia</h3>
+        <p class="position">Akkreditierter BAFA-Berater · Inhaber DK Solutions</p>
+        <p>Als akkreditierter BAFA-Berater verfügt Tamaz Tordia über die offizielle Zulassung des Bundesamts für Wirtschaft und Ausfuhrkontrolle. Seine Expertise: das Zusammenspiel aus Fördermitteln, Steueroptimierung und betrieblicher Praxis. Mit DK Solutions verfolgt er einen klaren Anspruch — Beratung, die sich für den Mandanten rechnet.</p>
+        <div class="cred-list">
+          <span class="cred">BAFA-akkreditiert</span>
+          <span class="cred">Aachen</span>
+          <span class="cred">Mittelstand</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="team-grid reveal">
+      <div class="member">
+        <div class="member-portrait"><img src="assets/joel.png" alt="Joel Dakaj — Geschäftsführer DK Solutions" /></div>
+        <h4>Joel Dakaj</h4>
+        <span class="role">Geschäftsführer</span>
+      </div>
+      <div class="member">
+        <div class="member-portrait"><img src="assets/flamur.png" alt="Flamur Kastrati — Geschäftsführer DK Solutions" /></div>
+        <h4>Flamur Kastrati</h4>
+        <span class="role">Geschäftsführer</span>
+      </div>
+      <div class="member">
+        <div class="member-portrait"><img src="assets/philipp.png" alt="Philipp Jagiella — Vertriebsleiter DK Solutions" /></div>
+        <h4>Philipp Jagiella</h4>
+        <span class="role">Vertriebsleiter</span>
+      </div>
+      <div class="member">
+        <div class="member-portrait"><img src="assets/tabita.png" alt="Tabita Mbolo — Fachberaterin DK Solutions" /></div>
+        <h4>Tabita Mbolo</h4>
+        <span class="role">Fachberaterin</span>
+      </div>
+      <div class="member">
+        <div class="member-portrait"><img src="assets/sara.png" alt="Sara Abdul Hak — Fachberaterin DK Solutions" /></div>
+        <h4>Sara Abdul Hak</h4>
+        <span class="role">Fachberaterin</span>
+      </div>
+      <div class="member">
+        <div class="member-portrait"><img src="assets/julius.png" alt="Julius Ferreira Schmitz — Fachberater DK Solutions" /></div>
+        <h4>Julius Ferreira Schmitz</h4>
+        <span class="role">Fachberater</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== PROZESS ====== -->
+<section id="prozess">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Der Ablauf</span>
+      <h2>In vier Schritten<br>zur <em>Auswertung.</em></h2>
+      <p>Klar strukturiert, terminlich verbindlich, ohne Verkaufsdruck. So arbeiten wir vom Erstgespräch bis zur Umsetzung.</p>
+    </div>
+
+    <div class="process-list reveal">
+      <div class="step">
+        <span class="step-num">i.</span>
+        <div class="step-content">
+          <h3>Kostenfreies Erstgespräch</h3>
+          <p>Wir hören zu, verstehen Ihre Situation, und prüfen unverbindlich, ob ein gemeinsames Mandat überhaupt Sinn ergibt. Keine Verpflichtung, kein Verkaufsgespräch.</p>
+          <span class="duration">30 Minuten · per Telefon oder vor Ort</span>
+        </div>
+      </div>
+
+      <div class="step">
+        <span class="step-num">ii.</span>
+        <div class="step-content">
+          <h3>Onboarding & Bestandsaufnahme</h3>
+          <p>Wir nehmen Ihre Verträge, Strukturen und Finanzkennzahlen auf, identifizieren Hebel, und stimmen mit Ihnen das weitere Vorgehen ab.</p>
+          <span class="duration">Tag 1 – 3</span>
+        </div>
+      </div>
+
+      <div class="step">
+        <span class="step-num">iii.</span>
+        <div class="step-content">
+          <h3>Auswertung & Handlungsempfehlung</h3>
+          <p>Schriftliche Förder- und Einsparanalyse mit konkreten, priorisierten Empfehlungen. Sie wissen genau, was zu tun ist — und in welcher Reihenfolge.</p>
+          <span class="duration">Innerhalb von 14 Tagen</span>
+        </div>
+      </div>
+
+      <div class="step">
+        <span class="step-num">iv.</span>
+        <div class="step-content">
+          <h3>Umsetzung & Begleitung</h3>
+          <p>Wir stellen Kontakte zu Förderstellen und Instituten her, begleiten Sie zu Terminen — und übernehmen die entstehenden Vermittlungskosten.</p>
+          <span class="duration">Laufend, nach Bedarf</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== CONTACT ====== -->
+<section class="contact" id="kontakt">
+  <div class="container">
+    <div class="contact-inner">
+      <div>
+        <span class="eyebrow">Kontakt</span>
+        <h2>Ein Gespräch.<br>Vielleicht <em>Ihr Wendepunkt.</em></h2>
+        <p class="contact-lead">Sie haben Fragen, möchten unverbindlich besprechen, ob sich ein Mandat für Sie lohnt? Wir nehmen uns Zeit — persönlich, ohne Skript, ohne Druck.</p>
+
+        <div class="contact-info">
+          <div class="row">
+            <span class="lbl">Telefon</span>
+            <a href="tel:+4917310385700" class="val">0173 1038570</a>
+          </div>
+          <div class="row">
+            <span class="lbl">E-Mail</span>
+            <a href="mailto:info@dk-finanzkanzlei.de" class="val">info@dk-finanzkanzlei.de</a>
+          </div>
+          <div class="row">
+            <span class="lbl">Sitz</span>
+            <span class="val">Brabantstraße 80, 52070 Aachen</span>
+          </div>
+          <div class="row">
+            <span class="lbl">Erreichbar</span>
+            <span class="val">Mo – Fr, 09:00 – 18:00 Uhr</span>
+          </div>
+        </div>
+      </div>
+
+      <form class="form-card" onsubmit="event.preventDefault(); alert('Danke! Wir melden uns innerhalb von 24 Stunden.');">
+        <h3>Erstgespräch anfragen</h3>
+        <p class="sub">Wir melden uns innerhalb von 24 Stunden, werktags.</p>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="vorname">Vorname *</label>
+            <input id="vorname" type="text" required />
+          </div>
+          <div class="field">
+            <label for="nachname">Nachname *</label>
+            <input id="nachname" type="text" required />
+          </div>
+        </div>
+        <div class="field">
+          <label for="firma">Unternehmen</label>
+          <input id="firma" type="text" />
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="mail">E-Mail *</label>
+            <input id="mail" type="email" required />
+          </div>
+          <div class="field">
+            <label for="tel">Telefon</label>
+            <input id="tel" type="tel" />
+          </div>
+        </div>
+        <div class="field">
+          <label for="interesse">Mein Interesse</label>
+          <select id="interesse">
+            <option>Förder- & Finanzanalyse</option>
+            <option>Einsparanalyse / Fixkostenoptimierung</option>
+            <option>Online-Präsenz-Analyse</option>
+            <option>Gesamtberatung</option>
+            <option>Allgemeine Anfrage</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="msg">Ihr Anliegen</label>
+          <textarea id="msg" rows="3"></textarea>
+        </div>
+        <button type="submit" class="btn-submit">Anfrage senden →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ====== FOOTER ====== -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="logo" aria-label="DK Solutions">
+          <img src="assets/logo_dark.png" alt="DK Solutions" />
+        </a>
+        <p>Förder- und Finanzberatung für den Mittelstand. Akkreditierter BAFA-Berater mit Sitz in Aachen.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Leistungen</h5>
+        <a href="#leistungen">Förderanalyse</a>
+        <a href="#leistungen">Einsparanalyse</a>
+        <a href="#leistungen">Begleitung</a>
+        <a href="#leistungen">Online-Präsenz</a>
+      </div>
+      <div class="footer-col">
+        <h5>Unternehmen</h5>
+        <a href="#team">Team</a>
+        <a href="#cases">Referenzen</a>
+        <a href="#prozess">Prozess</a>
+        <a href="#kontakt">Kontakt</a>
+      </div>
+      <div class="footer-col">
+        <h5>Rechtliches</h5>
+        <a href="#">Impressum</a>
+        <a href="#">Datenschutz</a>
+        <a href="#">AGB</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 DK Solutions · Tamaz Tordia · Aachen</span>
+      <span>Akkreditierter BAFA-Berater</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Nav scroll state
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 20) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  });
+
+  // Mobile toggle
+  document.getElementById('mobileToggle').addEventListener('click', () => {
+    document.getElementById('navLinks').classList.toggle('open');
+  });
+  document.querySelectorAll('#navLinks a').forEach(a => {
+    a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
+  });
+
+  // Reveal on scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
